@@ -1,0 +1,26 @@
+{
+  "name": "ethergas-api",
+  "version": "1.0.0",
+  "description": "ethergas.io oracle api",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2 start \"python3 etheroracle.py\" index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ethergasio/ethergas-api.git"
+  },
+  "author": "Uni Sayo <unibtc@devpod.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ethergasio/ethergas-api/issues"
+  },
+  "homepage": "https://github.com/Ethergasio/ethergas-api#readme",
+  "dependencies": {
+    "fastify": "^2.14.1",
+    "fs-extra": "^9.0.0",
+    "lodash.isequal": "^4.5.0",
+    "needle": "^2.4.1"
+  }
+}

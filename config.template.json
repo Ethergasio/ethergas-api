@@ -1,0 +1,8 @@
+{
+    "workers" : true,
+    "port": 8080,
+    "cfAccountId": "",
+    "cfWorkerKvId": "",
+    "cfAuthEmail": "",
+    "cfAuthKey": ""
+}
