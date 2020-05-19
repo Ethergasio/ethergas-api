@@ -51,4 +51,15 @@ if (!config.workers) {
     }
   }
 }
-module.exports = start;
+async function init(){
+  const exists = await fs.pathExists(path.join(jsonPath,'ethergas.json'));
+  if(!exists) {
+    console.log('json file not ready, retrying in 10 seconds')
+    await sleep(10000);
+    return init()
+  }else {
+    return start()
+  }
+}
+
+module.exports = init;

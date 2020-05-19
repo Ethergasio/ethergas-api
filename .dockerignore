@@ -1,0 +1,5 @@
+config.json
+oracleconfig.py
+node_modules
+config.template.json
+json/*.json

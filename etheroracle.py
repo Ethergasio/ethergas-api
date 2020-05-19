@@ -6,17 +6,10 @@ import traceback
 import os
 import pandas as pd
 import numpy as np
+import oracleconfig as cfg
 from web3 import Web3, HTTPProvider
 
-### Replace with your parity/geth/infura node
-
-web3 = Web3(HTTPProvider('http://localhost:8554'))
-
-### These are the threholds used for % blocks accepting to define the recommended gas prices. can be edited here if desired
-
-SAFELOW = 35
-STANDARD = 70
-FAST = 90
+web3 = Web3(HTTPProvider(cfg.PROVIDER))
 
 class Timers():
     """
@@ -149,17 +142,17 @@ def make_predictTable(block, alltx, hashpower, avg_timemined):
 def get_gasprice_recs(prediction_table, block_time, block):
 
     def get_safelow():
-        series = prediction_table.loc[prediction_table['hashpower_accepting'] >= SAFELOW, 'gasprice']
+        series = prediction_table.loc[prediction_table['hashpower_accepting'] >= cfg.SAFELOW, 'gasprice']
         safelow = series.min()
         return float(safelow)
 
     def get_average():
-        series = prediction_table.loc[prediction_table['hashpower_accepting'] >= STANDARD, 'gasprice']
+        series = prediction_table.loc[prediction_table['hashpower_accepting'] >= cfg.STANDARD, 'gasprice']
         average = series.min()
         return float(average)
 
     def get_fast():
-        series = prediction_table.loc[prediction_table['hashpower_accepting'] >= FAST, 'gasprice']
+        series = prediction_table.loc[prediction_table['hashpower_accepting'] >= cfg.FAST, 'gasprice']
         fastest = series.min()
         return float(fastest)
 
@@ -183,9 +176,9 @@ def master_control():
         nonlocal alltx
         nonlocal blockdata
         print("\n\n**** ETH Gas Station Express Oracle ****")
-        print ("\nSafelow = " +str(SAFELOW)+ "% of blocks accepting.  Usually confirms in less than 30min.")
-        print ("Standard= " +str(STANDARD)+ "% of blocks accepting. Usually confirms in less than 5 min.")
-        print ("Fast = " +str(FAST)+ "% of blocks accepting.  Usually confirms in less than 1 minute")
+        print ("\nSafelow = " +str(cfg.SAFELOW)+ "% of blocks accepting.  Usually confirms in less than 30min.")
+        print ("Standard= " +str(cfg.STANDARD)+ "% of blocks accepting. Usually confirms in less than 5 min.")
+        print ("Fast = " +str(cfg.FAST)+ "% of blocks accepting.  Usually confirms in less than 1 minute")
         print ("Fastest = all blocks accepting.  As fast as possible but you are probably overpaying.")
         print("\nnow loading gasprice data from last 200 blocks from " + str(block) +"...give me a minute")
 
