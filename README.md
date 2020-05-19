@@ -15,3 +15,10 @@ Installation:
 
 start:
  - yarn/npm start
+
+
+ Docker:
+  - create a folder named `.ethergas` - `mkdir ~/.ethergas`
+  - create `config.json` inside `~/.ethergas` - follow the config.template.json file
+  - create `oracleconfig.py` inside `~/.ethergas` - follow the oracaleconfig.py file
+  - `docker run -d -v $HOME/.ethergas/config.json:/usr/src/app/config.json -v $HOME/.ethergas/oracleconfig.py:/usr/src/app/oracleconfig.py`
