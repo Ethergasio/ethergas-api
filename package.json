@@ -4,7 +4,7 @@
   "description": "ethergas.io oracle api",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start \"python3 etheroracle.py\" index.js",
+    "start": "pm2-runtime start ecosystem.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
